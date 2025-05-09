@@ -8,19 +8,15 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: docs
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
         with:
-          working-directory: docs
-      - run: npm run build
-
+          path: docs
+      - run: npm run build --prefix=docs
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: build
+          path: docs/build
 
   deploy:
     needs: build
