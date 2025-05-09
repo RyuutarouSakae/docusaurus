@@ -77,10 +77,17 @@ const config: Config = {
       items: [
         {
           type: "docSidebar",
-          sidebarId: "tutorialSidebar",
+          sidebarId: "serviceSidebar",
           position: "left",
-          label: "Tutorial",
+          label: "Service",
         },
+        {
+          type: "docSidebar",
+          sidebarId: "developmentSidebar",
+          position: "left",
+          label: "Development",
+        },
+
         { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/facebook/docusaurus",
