@@ -8,9 +8,12 @@ on:
 jobs:
   build-docusaurus:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup-node
         with:
           working-directory: docs
-      - run: npm run build --prefix=docs
+      - run: npm run build
