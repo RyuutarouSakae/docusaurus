@@ -1,0 +1,31 @@
+name: Setup Node.js
+
+description: Setup Node.js
+
+inputs:
+  working-directory:
+    description: The directory to run the setup in
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@v4
+      id: setup_node
+      with:
+        node-version: "22"
+
+      # キャッシュが存在する場合、キャッシュから node_modules をリストアする
+    - name: Cache node modules
+      id: cache-node-modules
+      uses: actions/cache@v4
+      with:
+        path: "**/node_modules"
+        # 異なる環境で実行されることによるファイルの不整合を防ぐため、キャッシュキーにランナーのアーキテクチャ、OS、Node.jsのバージョン、package-lock.json のハッシュを含める
+        key: ${{ runner.arch }}-${{ runner.os }}-node-${{ steps.setup_node.outputs.node-version }}-${{ hashFiles(format('**/{0}/package-lock.json', inputs.working-directory)) }}"
+
+    # キャッシュが存在しない場合のみ依存関係をインストール
+    - if: ${{ steps.cache-node-modules.outputs.cache-hit != 'true' }}
+      name: Install Dependencies
+      run: npm ci --prefix=${{ inputs.working-directory }}
+      shell: bash
