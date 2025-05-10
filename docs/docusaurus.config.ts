@@ -1,6 +1,7 @@
-import { themes as prismThemes } from "prism-react-renderer";
 import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type * as Plugin from "@docusaurus/types/src/plugin";
+import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -42,6 +43,7 @@ const config: Config = {
           // Remove this to remove the "edit this page" links.
           editUrl:
             "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+          docItemComponent: "@theme/ApiItem",
         },
         blog: {
           showReadingTime: true,
@@ -94,6 +96,11 @@ const config: Config = {
           label: "GitHub",
           position: "right",
         },
+        {
+          label: "Petstore API",
+          position: "left",
+          to: "/docs/api/petstore-api",
+        },
       ],
     },
     footer: {
@@ -104,7 +111,7 @@ const config: Config = {
           items: [
             {
               label: "Tutorial",
-              to: "/docs/intro",
+              to: "/docusaurus/docs/service/intro",
             },
           ],
         },
@@ -142,10 +149,137 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      additionalLanguages: [
+        "ruby",
+        "csharp",
+        "php",
+        "java",
+        "powershell",
+        "json",
+        "bash",
+        "dart",
+        "objectivec",
+        "r",
+      ],
     },
+    languageTabs: [
+      {
+        highlight: "javascript",
+        language: "nodejs",
+        logoClass: "nodejs",
+      },
+      {
+        highlight: "python",
+        language: "python",
+        logoClass: "python",
+      },
+      {
+        highlight: "bash",
+        language: "curl",
+        logoClass: "curl",
+      },
+      {
+        highlight: "csharp",
+        language: "csharp",
+        logoClass: "csharp",
+      },
+      {
+        highlight: "go",
+        language: "go",
+        logoClass: "go",
+      },
+      {
+        highlight: "ruby",
+        language: "ruby",
+        logoClass: "ruby",
+      },
+      {
+        highlight: "php",
+        language: "php",
+        logoClass: "php",
+      },
+      {
+        highlight: "java",
+        language: "java",
+        logoClass: "java",
+        variant: "unirest",
+      },
+      {
+        highlight: "powershell",
+        language: "powershell",
+        logoClass: "powershell",
+      },
+      {
+        highlight: "dart",
+        language: "dart",
+        logoClass: "dart",
+      },
+      {
+        highlight: "javascript",
+        language: "javascript",
+        logoClass: "javascript",
+      },
+      {
+        highlight: "c",
+        language: "c",
+        logoClass: "c",
+      },
+      {
+        highlight: "objective-c",
+        language: "objective-c",
+        logoClass: "objective-c",
+      },
+      {
+        highlight: "ocaml",
+        language: "ocaml",
+        logoClass: "ocaml",
+      },
+      {
+        highlight: "r",
+        language: "r",
+        logoClass: "r",
+      },
+      {
+        highlight: "swift",
+        language: "swift",
+        logoClass: "swift",
+      },
+      {
+        highlight: "kotlin",
+        language: "kotlin",
+        logoClass: "kotlin",
+      },
+      {
+        highlight: "rust",
+        language: "rust",
+        logoClass: "rust",
+      },
+    ],
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    [
+      "docusaurus-plugin-openapi-docs",
+      {
+        id: "openapi",
+        docsPluginId: "classic",
+        config: {
+          petstore: {
+            specPath: "examples/petstore.yaml",
+            outputDir: "docs/petstore",
+            downloadUrl:
+              "https://raw.githubusercontent.com/PaloAltoNetworks/docusaurus-template-openapi-docs/main/examples/petstore.yaml",
+            sidebarOptions: {
+              groupPathsBy: "tag",
+              categoryLinkSource: "tag",
+            },
+          } satisfies OpenApiPlugin.Options,
+        } satisfies Plugin.PluginOptions,
+      },
+    ],
+  ],
+
+  themes: ["docusaurus-theme-openapi-docs"],
 };
 
 export default config;
