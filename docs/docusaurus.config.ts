@@ -279,7 +279,10 @@ const config: Config = {
     ],
   ],
 
-  themes: ["docusaurus-theme-openapi-docs"],
+  themes: [
+    "docusaurus-theme-openapi-docs",
+    ["@easyops-cn/docusaurus-search-local", { hashed: true, language: "ja" }],
+  ],
 };
 
 export default config;
