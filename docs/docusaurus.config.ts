@@ -1,37 +1,25 @@
-import type { Config } from "@docusaurus/types";
 import type * as Preset from "@docusaurus/preset-classic";
+import type { Config } from "@docusaurus/types";
 import type * as Plugin from "@docusaurus/types/src/plugin";
 import type * as OpenApiPlugin from "docusaurus-plugin-openapi-docs";
-
-// This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
   title: "My Site",
   tagline: "Dinosaurs are cool",
   favicon: "img/favicon.ico",
 
-  // Set the production url of your site here
+  // GitHub pagesの場合、"https://<GitHubのorg/ユーザー名>.github.io"
   url: "https://ryuutarousakae.github.io",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
+  // GitHub pagesの場合、"/<リポジトリ名>/"
   baseUrl: "/docusaurus/",
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "RyuutarouSakae", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "RyuutarouSakae", // GitHubのorg/ユーザー名
+  projectName: "docusaurus", // リポジトリ名
   trailingSlash: false,
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en"],
-  },
+  i18n: { defaultLocale: "ja", locales: ["ja"] },
 
   presets: [
     [
@@ -39,28 +27,22 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
+          // GitHub リポジトリのURL
           editUrl:
             "https://github.com/RyuutarouSakae/docusaurus/tree/main/docs",
           docItemComponent: "@theme/ApiItem",
         },
-        theme: {
-          customCss: "./src/css/custom.css",
-        },
+        theme: { customCss: "./src/css/custom.css" },
       } satisfies Preset.Options,
     ],
   ],
 
   themeConfig: {
-    // Replace with your project's social card
+    // プロジェクトのソーシャルカード画像に置き換える
     image: "img/docusaurus-social-card.jpg",
     navbar: {
       title: "My Site",
-      logo: {
-        alt: "My Site Logo",
-        src: "img/logo.svg",
-      },
+      logo: { alt: "My Site Logo", src: "img/logo.svg" },
       items: [
         {
           type: "docSidebar",
@@ -75,14 +57,14 @@ const config: Config = {
           label: "Development",
         },
         {
-          href: "https://github.com/facebook/docusaurus",
-          label: "GitHub",
-          position: "right",
-        },
-        {
           label: "Petstore API",
           position: "left",
           to: "/docs/api/petstore-api",
+        },
+        {
+          href: "https://github.com/RyuutarouSakae/docusaurus",
+          label: "GitHub",
+          position: "right",
         },
       ],
     },
@@ -91,12 +73,7 @@ const config: Config = {
       links: [
         {
           title: "Docs",
-          items: [
-            {
-              label: "Tutorial",
-              to: "/docusaurus/docs/service/intro",
-            },
-          ],
+          items: [{ label: "Tutorial", to: "/docusaurus/docs/service/intro" }],
         },
         {
           title: "Community",
@@ -118,10 +95,7 @@ const config: Config = {
         {
           title: "More",
           items: [
-            {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
-            },
+            { label: "GitHub", href: "https://github.com/facebook/docusaurus" },
           ],
         },
       ],
@@ -137,102 +111,37 @@ const config: Config = {
         "json",
         "bash",
         "dart",
-        "objectivec",
-        "r",
       ],
     },
     languageTabs: [
-      {
-        highlight: "javascript",
-        language: "nodejs",
-        logoClass: "nodejs",
-      },
-      {
-        highlight: "python",
-        language: "python",
-        logoClass: "python",
-      },
-      {
-        highlight: "bash",
-        language: "curl",
-        logoClass: "curl",
-      },
-      {
-        highlight: "csharp",
-        language: "csharp",
-        logoClass: "csharp",
-      },
-      {
-        highlight: "go",
-        language: "go",
-        logoClass: "go",
-      },
-      {
-        highlight: "ruby",
-        language: "ruby",
-        logoClass: "ruby",
-      },
-      {
-        highlight: "php",
-        language: "php",
-        logoClass: "php",
-      },
-      {
-        highlight: "java",
-        language: "java",
-        logoClass: "java",
-        variant: "unirest",
-      },
+      { highlight: "bash", language: "curl", logoClass: "curl" },
       {
         highlight: "powershell",
         language: "powershell",
         logoClass: "powershell",
       },
       {
-        highlight: "dart",
-        language: "dart",
-        logoClass: "dart",
-      },
-      {
         highlight: "javascript",
         language: "javascript",
         logoClass: "javascript",
       },
+      { highlight: "javascript", language: "nodejs", logoClass: "nodejs" },
+      { highlight: "dart", language: "dart", logoClass: "dart" },
+      { highlight: "python", language: "python", logoClass: "python" },
+      { highlight: "go", language: "go", logoClass: "go" },
+      { highlight: "ruby", language: "ruby", logoClass: "ruby" },
+      { highlight: "csharp", language: "csharp", logoClass: "csharp" },
+      { highlight: "php", language: "php", logoClass: "php" },
+      { highlight: "c", language: "c", logoClass: "c" },
       {
-        highlight: "c",
-        language: "c",
-        logoClass: "c",
+        highlight: "java",
+        language: "java",
+        logoClass: "java",
+        variant: "unirest",
       },
-      {
-        highlight: "objective-c",
-        language: "objective-c",
-        logoClass: "objective-c",
-      },
-      {
-        highlight: "ocaml",
-        language: "ocaml",
-        logoClass: "ocaml",
-      },
-      {
-        highlight: "r",
-        language: "r",
-        logoClass: "r",
-      },
-      {
-        highlight: "swift",
-        language: "swift",
-        logoClass: "swift",
-      },
-      {
-        highlight: "kotlin",
-        language: "kotlin",
-        logoClass: "kotlin",
-      },
-      {
-        highlight: "rust",
-        language: "rust",
-        logoClass: "rust",
-      },
+      { highlight: "rust", language: "rust", logoClass: "rust" },
+      { highlight: "swift", language: "swift", logoClass: "swift" },
+      { highlight: "kotlin", language: "kotlin", logoClass: "kotlin" },
     ],
   } satisfies Preset.ThemeConfig,
 
